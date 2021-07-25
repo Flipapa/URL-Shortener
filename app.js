@@ -2,6 +2,8 @@ const express = require('express')
 const ephbs = require('express-handlebars')
 const PORT = 3000
 
+require('./config/mongoose')
+
 const app = express()
 
 app.engine('handlebars', ephbs({ defaultLayout: 'main' }))
