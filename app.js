@@ -6,9 +6,10 @@ const app = express()
 
 app.engine('handlebars', ephbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  res.send('This is a Test!')
+  res.render('index')
 })
 
 app.listen(PORT, () => {
