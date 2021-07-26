@@ -19,15 +19,21 @@ app.get('/', (req, res) => {
 
 app.post('/', async (req, res) => {
   const { inputURL } = req.body
-  const record = await ShortedURL.find({ targetURL: inputURL }).lean()
+  const record = await ShortedURL.findOne({ targetURL: inputURL }).lean()
   let randomCode
+  let shortedURL
   if (record) {
     randomCode = record.randomCode
   } else {
     randomCode = generateRandomCode()
-    ShortedURL.create({ randomCode, targetURL: inputURL})
+    await ShortedURL.create({ randomCode, targetURL: inputURL })
   }
-  res.render('index', { randomCode })
+  if (req.headers.host === 'localhost:3000') {
+    shortedURL = `http://${req.headers.host}/${randomCode}`
+  } else {
+    shortedURL = `https://${req.headers.host}/${randomCode}`
+  }
+  res.render('index', { shortedURL })
 })
 
 app.get('/:randomCode', async (req, res) => {
