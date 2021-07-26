@@ -30,6 +30,12 @@ app.post('/', async (req, res) => {
   res.render('index', { randomCode })
 })
 
+app.get('/:randomCode', async (req, res) => {
+  const randomCode = req.params.randomCode
+  const url = await ShortedURL.findOne({ randomCode }).lean()
+  res.redirect(url.targetURL)
+})
+
 app.listen(PORT, () => {
   console.log(`Express is listening on localhost:${PORT}`)
 })
