@@ -3,8 +3,8 @@
   {{#unless shortedURL}}
   <form action="/" method="POST" class="needs-validation" novalidate>
     <div class="form-group">
-      <input class="form-control mx-auto" type="url" name="inputURL" id="inputURL" placeholder="Input URL here" aria-describedby="validationURLFeedback" required
-        style="max-width: 800px;">
+      <input class="form-control mx-auto" type="url" name="inputURL" id="inputURL" placeholder="Input URL here"
+        aria-describedby="validationURLFeedback" required style="max-width: 800px;">
       <div id="validationURLFeedback" class="invalid-feedback">
         請輸入有效網址！
       </div>
@@ -15,8 +15,11 @@
   {{#if shortedURL}}
   <div class="alert alert-success mx-auto" style="max-width: 800px;" role="alert">
     <h4>Success! Please use this link:</h4>
-    <a href="{{shortedURL}}"><h5 id="shortedURL">{{shortedURL}}</h5></a>
-    <button class="btn btn-warning btn-lg col-3 mt-2">Copy</button>
+    <a href="{{shortedURL}}">
+      <h5 id="shortedURL">{{shortedURL}}</h5>
+    </a>
+    <button class="btn btn-warning btn-lg col-3 mt-2" onclick="copyURL()">Copy</button>
   </div>
+  <script src="/javascripts/cpoyURL.js"></script>
   {{/if}}
 </div>
