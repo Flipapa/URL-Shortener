@@ -6,15 +6,17 @@ function copyURL() {
   // document.execCommand("copy");
   // $temp.remove();
 
-  /* Get the text field */
-  const copyText = document.querySelector("#shortedURL");
-  let $temp = document.createElement("input")
-  copyText.append($temp)
-  /* Select the text field */
-  $temp.value = copyText.textContent
-  $temp.select();
-  $temp.setSelectionRange(0, 99999); /* For mobile devices */
-  /* Copy the text inside the text field */
-  document.execCommand("copy");
-  $temp.remove()
+  // Get the text field
+  const shortedURL = document.querySelector("#shortedURL")
+  const inputElement = document.createElement("input")
+  shortedURL.append(inputElement)
+
+  // Select the text field
+  inputElement.value = shortedURL.textContent
+  inputElement.select()
+  inputElement.setSelectionRange(0, 99999) // For mobile devices
+
+  // Copy the text inside the text field
+  document.execCommand("copy")
+  inputElement.remove()
 }
