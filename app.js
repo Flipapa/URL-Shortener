@@ -12,6 +12,9 @@ app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(routes)
+app.use((req, res) => {
+  res.status(404).render('404')
+})
 
 app.listen(PORT, () => {
   console.log(`Express is listening on localhost:${PORT}`)

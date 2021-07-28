@@ -38,6 +38,7 @@ router.post('/', async (req, res) => {
 router.get('/:randomCode', async (req, res) => {
   const randomCode = req.params.randomCode
   const url = await ShortedURL.findOne({ randomCode }).lean()
+  if (!url) return res.status(404).render('404')
   res.redirect(url.targetURL)
 })
 
