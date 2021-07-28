@@ -17,8 +17,7 @@ router.post('/', async (req, res) => {
   if (record) {
     randomCode = record.randomCode
   } else {
-    randomCode = generateRandomCode()
-    let codeCheck = await ShortedURL.findOne({ randomCode }).lean()
+    let codeCheck = true
     while (codeCheck) {
       randomCode = generateRandomCode()
       codeCheck = await ShortedURL.findOne({ randomCode })
